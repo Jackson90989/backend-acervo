@@ -1,0 +1,47 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  password  String
+  approved  Boolean @default(false)  // novo campo
+}
+
+model Book {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  filePath    String   // 
+  coverImagePath String?
+  createdAt   DateTime @default(now())
+}
+
+model Game {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String
+  filePath    String
+  coverImagePath String?
+  createdAt   DateTime @default(now())
+}
+
+model Movie {
+  id              Int   @id @default(autoincrement())
+  title           String
+  description     String
+  filePath        String
+  rating          Int
+  coverImagePath  String?
+  createdAt       DateTime @default(now())
+}
+
+
